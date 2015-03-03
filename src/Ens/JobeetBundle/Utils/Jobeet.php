@@ -1,0 +1,23 @@
+<?php
+namespace Ens\JobeetBundle\Utils;
+
+class Jobeet
+{
+  
+  /**
+   * slugify url
+   *
+   * @return
+   */
+  static public function slugify($text) {
+    
+    //replace all special chars by -
+    $text = preg_replace('/\W+/', '-', $text);
+    
+    //trim and lowercase
+    $text = strtolower(trim($text, '-'));
+    
+    return $text;
+  }
+}
+?>
