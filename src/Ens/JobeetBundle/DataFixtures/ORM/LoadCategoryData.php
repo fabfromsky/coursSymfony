@@ -21,11 +21,15 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
  
     $administrator = new Category();
     $administrator->setName('Administrator');
+
+    $seigneurDuTemps = new Category();
+    $seigneurDuTemps->setName('Seigneur du Temps');
  
     $em->persist($design);
     $em->persist($programming);
     $em->persist($manager);
     $em->persist($administrator);
+    $em->persist($seigneurDuTemps);
  
     $em->flush();
  
@@ -33,6 +37,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     $this->addReference('category-programming', $programming);
     $this->addReference('category-manager', $manager);
     $this->addReference('category-administrator', $administrator);
+    $this->addReference('category-seigneurDuTemps', $seigneurDuTemps);
   }
  
   public function getOrder()
