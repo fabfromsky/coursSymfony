@@ -69,11 +69,11 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
     
     for ($i = 100; $i <= 130; $i++) {
       $job = new Job();
-      $job->setCategory($em->merge($this->getReference('category-seigneurDuTemps')));
+      $job->setCategory($em->merge($this->getReference('category-timelord')));
       $job->setType('full-time');
       $job->setCompany('Company ' . $i);
-      $job->setPosition('Seigneur du Temps');
-      $job->setLocation('Gallifrey, constellation de Kasterborous');
+      $job->setPosition('Time Lord');
+      $job->setLocation('Gallifrey, constellation of Kasterborous');
       $job->setDescription('omelette du fromage');
       $job->setHowToApply('Send your resume to theDoctor@gmail.gal');
       $job->setIsPublic(true);
@@ -83,7 +83,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
       
       $em->persist($job);
     }
-    
+
     $em->flush();
   }
   
