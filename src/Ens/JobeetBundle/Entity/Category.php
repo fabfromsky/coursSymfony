@@ -2,6 +2,7 @@
 namespace Ens\JobeetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 
 /**
  * Category
@@ -132,15 +133,55 @@ class Category
     return $this->category_affiliates;
   }
   
+  /**
+   * __toString
+   * @return Name if strings, else return E_RECOVERABLE_ERROR
+   */
   public function __toString() {
     return $this->getName();
   }
   
+  /**
+   * setter active jobs
+   * @param type $jobs 
+   * @return type
+   */
   public function setActiveJobs($jobs) {
     $this->active_jobs = $jobs;
   }
   
+  /**
+   * getter active jobs
+   * @return type
+   */
   public function getActiveJobs() {
     return $this->active_jobs;
+  }
+  
+  /**
+   * Description
+   * @return type
+   */
+  public function getSlug() {
+    return Jobeet::slugify($this->getName());
+  }
+  
+  private $more_jobs;
+  
+  /**
+   * setter more jobs
+   * @param type $jobs 
+   * @return type
+   */
+  public function setMoreJobs($jobs) {
+    $this->more_jobs = $jobs >= 0 ? $jobs : 0;
+  }
+  
+  /**
+   * getter more jobs
+   * @return type
+   */
+  public function getMoreJobs() {
+    return $this->more_jobs;
   }
 }

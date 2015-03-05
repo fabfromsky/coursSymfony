@@ -10,7 +10,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 {
   
   /**
-   * create multiple job offers
+   * create job offers
    *
    */
   public function load(ObjectManager $em) {
@@ -29,7 +29,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
     $job_expired->setIsActivated(true);
     $job_expired->setToken('job_expired');
     $job_expired->setEmail('job@example.com');
-    $job_expired->setCreatedAt(new \DateTime('2005-12-01'));
+    $job_expired->setExpiresAt(new \DateTime('2005-12-01'));
     
     $job_sensio_labs = new Job();
     $job_sensio_labs->setCategory($em->merge($this->getReference('category-programming')));
@@ -45,7 +45,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
     $job_sensio_labs->setIsActivated(true);
     $job_sensio_labs->setToken('job_sensio_labs');
     $job_sensio_labs->setEmail('job@example.com');
-    $job_sensio_labs->setExpiresAt(new \DateTime('2015-03-03'));
+    $job_sensio_labs->setCreatedAt(new \DateTime('2015-03-03'));
     
     $job_extreme_sensio = new Job();
     $job_extreme_sensio->setCategory($em->merge($this->getReference('category-design')));
@@ -61,7 +61,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
     $job_extreme_sensio->setIsActivated(true);
     $job_extreme_sensio->setToken('job_extreme_sensio');
     $job_extreme_sensio->setEmail('job@example.com');
-    $job_extreme_sensio->setExpiresAt(new \DateTime('2015-03-03'));
+    $job_extreme_sensio->setCreatedAt(new \DateTime('2015-03-03'));
     
     $em->persist($job_expired);
     $em->persist($job_sensio_labs);
@@ -80,6 +80,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
       $job->SetIsActivated(true);
       $job->setToken('job_' . $i);
       $job->setEmail('job@example.com');
+      $job->setCreatedAt(new \DateTime('2015-03-03'));
       
       $em->persist($job);
     }

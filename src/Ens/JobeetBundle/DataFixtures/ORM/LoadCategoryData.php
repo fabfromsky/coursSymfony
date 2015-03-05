@@ -8,6 +8,10 @@ use Ens\JobeetBundle\Entity\Category;
  
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
+  /**
+   * setting categories
+   *
+   */
   public function load(ObjectManager $em)
   {
     $design = new Category();
