@@ -7,5 +7,5 @@ ens_jobeet_homepage:
     defaults: { _controller: EnsJobeetBundle:Job:index }
 
 ens_jobeet_category:
-    pattern: /category/{slug}
-    defaults: {_controller: EnsJobeetBundle:Category:show}
+    pattern: /category/{slug}/{page}
+    defaults: {_controller: EnsJobeetBundle:Category:show, page: 1 }

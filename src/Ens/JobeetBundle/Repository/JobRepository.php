@@ -11,7 +11,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class JobRepository extends EntityRepository
 {
-  public function getActiveJobs($category_id = null, $max = null) {
+  /**
+   * Description
+   * @param type $category_id 
+   * @param type $max 
+   * @param type $offset 
+   * @return type
+   */
+  public function getActiveJobs($category_id = null, $max = null, $offset = null) {
     $qb = $this->createQueryBuilder('j')
       ->where('j.expires_at > :date')
       ->setParameter('date', date('Y-m-d H:i:s', time()))
@@ -20,6 +27,11 @@ class JobRepository extends EntityRepository
     if ($max) {
       $qb->setMaxResults($max);
     }
+
+    if($offset) {
+      $qb->setFirstResult($offset);;
+    }
+
     if ($category_id) {
       $qb->andWhere('j.category = :category_id')->setParameter('category_id', $category_id);
     }
@@ -29,7 +41,11 @@ class JobRepository extends EntityRepository
     return $query->getResult();
   }
 
-
+  /**
+   * Description
+   * @param type $id 
+   * @return type
+   */
   public function getActiveJob($id)
   {
     $query = $this->createQueryBuilder('j')
@@ -49,6 +65,11 @@ class JobRepository extends EntityRepository
     return $job;
   }
 
+  /**
+   * Description
+   * @param type $category_id 
+   * @return type
+   */
   public function countActiveJobs($category_id = null) {
     $qb = $this->createQueryBuilder('j')
       ->select('count(j.id)')
