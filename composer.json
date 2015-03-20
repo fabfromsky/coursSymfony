@@ -20,12 +20,13 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
-        "sonata-project/admin-bundle": "2.3.*",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/admin-bundle": "~2.3",
+        "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/user-bundle": "2.2.*",
         "sonata-project/datagrid-bundle": "2.2.*@dev",
         "sonata-project/jquery-bundle": "1.10.*@dev",
-        "sonata-project/easy-extends-bundle": "2.1.*@dev"
+        "sonata-project/easy-extends-bundle": "2.1.*@dev",
+        "sonata-project/core-bundle": "~2.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
