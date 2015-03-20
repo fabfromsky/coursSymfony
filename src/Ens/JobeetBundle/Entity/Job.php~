@@ -570,9 +570,11 @@ class Job
      */
     public function removeUpload()
     {
-      if($file = $this->getAbsolutePath()) {
-        unlink($file);
-      }
+        if(file_exists($file)) {
+          if($file = $this->getAbsolutePath()) {
+            unlink($file);
+          }
+        }
     }
 
     /**
@@ -583,21 +585,5 @@ class Job
         if(null !== $this->file) {
           $this->logo = uniqid().'.'.$this->file->guessExtension();
         }
-    }
-
-    public function isExpired() {
-      return $this->getDaysBeforeExpires() < 0;
-    }
-
-    public function getDaysBeforeExpires() {
-      return ceil(($this->getExpiresAt()->format('U') - time()) / 86400);
-    }
-
-    public function expiresSoon() {
-      return $this->getDaysBeforeExpires() < 5;
-    }
-
-    public function publish() {
-      $this->setIsActivated(true);
     }
 }
