@@ -16,4 +16,7 @@ ens_jobeet_homepage:
 ens_jobeet_category:
     pattern: /category/{slug}/{page}
     defaults: {_controller: EnsJobeetBundle:Category:show, page: 1 }
+    
+logout:
+    pattern: /logout
  

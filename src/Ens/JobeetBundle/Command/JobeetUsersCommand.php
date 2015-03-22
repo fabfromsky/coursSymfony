@@ -25,7 +25,7 @@ class JobeetUsersCommand extends ContainerAwareCommand {
 		$username = $input->getArgument('username');
 		$password = $input->getArgument('password');
 		
-		$em = $this->getContainer()->get('doctrine')->getEntityManager();
+		$em = $this->getContainer()->get('doctrine')->getManager();
 		
 		$user = new User();
 		$user->setUsername($username);

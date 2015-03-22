@@ -107,11 +107,26 @@ class JobController extends Controller
       throw $this->createNotFoundException('Unable to find Job entity.');
     }
     
-    $deleteForm = $this->createDeleteForm($id);
+    $session = $this->getRequest()->getSession();
     
+    $jobs = $session->get('job_history', array());
+    
+    $job = array('id' => $entity->getId(), 'position' =>$entity->getPosition(), 'company' => $entity->getCompany(), 'companyslug' => $entity->getCompanySlug(), 'locationslug' => $entity->getLocationSlug(), 'positionslug' => $entity->getPositionSlug());
+ 
+    if (!in_array($job, $jobs)) {
+        // add the current job at the beginning of the array
+        array_unshift($jobs, $job);
+ 
+        // store the new job history back into the session
+        $session->set('job_history', array_slice($jobs, 0, 3));
+    }
+ 
+    $deleteForm = $this->createDeleteForm($id);
+ 
     return $this->render('EnsJobeetBundle:Job:show.html.twig', array(
-      'entity' => $entity, 
-      'delete_form' => $deleteForm->createView(),));
+        'entity'      => $entity,
+        'delete_form' => $deleteForm->createView(),
+    ));
   }
   
   /**
@@ -256,7 +271,7 @@ class JobController extends Controller
     $form->bindRequest($request);
    
     if ($form->isValid()) {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
    
       if (!$entity) {

@@ -18,7 +18,7 @@ class CategoryController extends Controller
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function showAction($slug, $page) {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $category = $em->getRepository('EnsJobeetBundle:Category')->findOneBySlug($slug);
 

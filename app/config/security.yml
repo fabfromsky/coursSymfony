@@ -20,6 +20,9 @@ security:
             form_login:
                 login_path:  /login
                 check_path:  /login_check
+            logout:
+                path:  /logout
+                target: /
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods

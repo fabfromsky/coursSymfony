@@ -152,7 +152,7 @@ class JobAdmin extends Admin {
 			throw new AccessDeniedException();
 		}
 	
-		$em = $this->getDoctrine()->getEntityManager();
+		$em = $this->getDoctrine()->getManager();
 		$nb = $em->getRepository('EnsJobeetBundle:Job')->cleanup(60);
 	
 		if ($nb) {
