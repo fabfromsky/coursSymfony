@@ -52,7 +52,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
     $job_extreme_sensio->setCategory($em->merge($this->getReference('category-design')));
     $job_extreme_sensio->setType('part-time');
     $job_extreme_sensio->setCompany('Extreme Sensio');
-    $job_extreme_sensio->setLogo('extreme-sensio.gif');
+    $job_extreme_sensio->setLogo('extreme-sensio.png');
     $job_extreme_sensio->setUrl('http://www.extreme-sensio.com/');
     $job_extreme_sensio->setPosition('Web Designer');
     $job_extreme_sensio->setLocation('Paris, France');

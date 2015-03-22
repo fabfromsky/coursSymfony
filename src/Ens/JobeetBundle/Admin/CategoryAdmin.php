@@ -12,45 +12,38 @@ class CategoryAdmin extends Admin {
 	
 	/**
 	 * setup the default sort column and order
+	 * 
 	 * @var unknown
 	 */
-	protected $datagridValues = array(
+	protected $datagridValues = array (
 			'_sort_order' => 'ASC',
-			'_sort_by' => 'name'
+			'_sort_by' => 'name' 
 	);
 	
 	/**
 	 * (non-PHPdoc)
+	 * 
 	 * @see \Sonata\AdminBundle\Admin\Admin::configureFormFields()
 	 */
-	protected function configureFormFields(FormMapper $formMapper)
-	{
-		$formMapper
-		->add('name')
-		->add('slug')
-		;
+	protected function configureFormFields(FormMapper $formMapper) {
+		$formMapper->add ( 'name' )->add ( 'slug' );
 	}
 	
 	/**
 	 * (non-PHPdoc)
+	 * 
 	 * @see \Sonata\AdminBundle\Admin\Admin::configureDatagridFilters()
 	 */
-	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-	{
-		$datagridMapper
-		->add('name')
-		;
+	protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
+		$datagridMapper->add ( 'name' );
 	}
 	
 	/**
 	 * (non-PHPdoc)
+	 * 
 	 * @see \Sonata\AdminBundle\Admin\Admin::configureListFields()
 	 */
-	protected function configureListFields(ListMapper $listMapper)
-	{
-		$listMapper
-		->addIdentifier('name')
-		->add('slug')
-		;
+	protected function configureListFields(ListMapper $listMapper) {
+		$listMapper->addIdentifier ( 'name' )->add ( 'slug' );
 	}
 }
