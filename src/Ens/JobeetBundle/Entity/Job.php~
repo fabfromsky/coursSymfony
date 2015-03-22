@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 
 /**
- * Job
+ * Job classs
  */
 class Job
 {
@@ -570,11 +570,9 @@ class Job
      */
     public function removeUpload()
     {
-        if(file_exists($file)) {
-          if($file = $this->getAbsolutePath()) {
-            unlink($file);
-          }
-        }
+      if($file = $this->getAbsolutePath()) {
+        unlink($file);
+      }
     }
 
     /**
@@ -585,5 +583,21 @@ class Job
         if(null !== $this->file) {
           $this->logo = uniqid().'.'.$this->file->guessExtension();
         }
+    }
+
+    public function isExpired() {
+      return $this->getDaysBeforeExpires() < 0;
+    }
+
+    public function getDaysBeforeExpires() {
+      return ceil(($this->getExpiresAt()->format('U') - time()) / 86400);
+    }
+
+    public function expiresSoon() {
+      return $this->getDaysBeforeExpires() < 5;
+    }
+
+    public function publish() {
+      $this->setIsActivated(true);
     }
 }
