@@ -9,8 +9,9 @@ use Ens\JobeetBundle\Entity\Category;
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
   /**
-   * setting categories
-   *
+   * settings category
+   * (non-PHPdoc)
+   * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
    */
   public function load(ObjectManager $em)
   {
@@ -44,8 +45,13 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     $this->addReference('category-timelord', $timelord);
   }
  
+  /**
+   * Oders the fixtures load
+   * (non-PHPdoc)
+   * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
+   */
   public function getOrder()
   {
-    return 1; // the order in which fixtures will be loaded
+    return 1; 
   }
 }

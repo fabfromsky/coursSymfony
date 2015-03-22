@@ -4,6 +4,13 @@ use Doctrine\ORM\EntityRepository;
  
 class JobRepository extends EntityRepository
 {
+/**
+ * requests db to get active jobs
+ * @param string $category_id
+ * @param string $max
+ * @param string $offset
+ * @return \Doctrine\ORM\array
+ */
   public function getActiveJobs($category_id = null, $max = null, $offset = null)
   {
     $qb = $this->createQueryBuilder('j')
@@ -34,6 +41,11 @@ class JobRepository extends EntityRepository
     return $query->getResult();
   }
  
+  /**
+   * 
+   * @param string $category_id
+   * @return \Doctrine\ORM\mixed
+   */
   public function countActiveJobs($category_id = null)
   {
     $qb = $this->createQueryBuilder('j')
@@ -54,6 +66,11 @@ class JobRepository extends EntityRepository
     return $query->getSingleScalarResult();
   }
  
+  /**
+   * 
+   * @param unknown $id
+   * @return Ambigous <NULL, \Doctrine\ORM\mixed>
+   */
   public function getActiveJob($id)
   {
     $query = $this->createQueryBuilder('j')

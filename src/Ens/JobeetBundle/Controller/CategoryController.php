@@ -5,15 +5,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ens\JobeetBundle\Entity\Category;
 
 /**
- * Category controller
- * @package default
+ * Controller category
+ * @author fabinthesky
+ *
  */
 class CategoryController extends Controller
 {
   /**
-   * Description
-   * @param type $slug 
-   * @return type
+   * Shows category job
+   * @param unknown $slug
+   * @param unknown $page
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function showAction($slug, $page) {
     $em = $this->getDoctrine()->getEntityManager();

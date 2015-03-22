@@ -12,8 +12,8 @@ use Doctrine\ORM\EntityRepository;
 class CategoryRepository extends EntityRepository
 {
   /**
-   * Description
-   * @return type
+   * Requests the db to get job list
+   * @return \Doctrine\ORM\array
    */
   public function getWithJobs()
   {

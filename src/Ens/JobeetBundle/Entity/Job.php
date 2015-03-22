@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ens\JobeetBundle\Utils\Jobeet as Jobeet;
 
 /**
- * Job
+ * Job classs
  */
 class Job
 {

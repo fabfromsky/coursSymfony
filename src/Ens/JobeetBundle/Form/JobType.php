@@ -10,8 +10,8 @@ use Ens\JobeetBundle\Entity\Job;
 class JobType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * (non-PHPdoc)
+     * @see \Symfony\Component\Form\AbstractType::buildForm()
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -46,6 +46,7 @@ class JobType extends AbstractType
     }
 
     /**
+     * get job name
      * @return string
      */
     public function getName()

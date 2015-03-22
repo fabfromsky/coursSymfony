@@ -10,8 +10,9 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
 {
   
   /**
-   * create job offers
-   *
+   * Creates job offers list
+   * (non-PHPdoc)
+   * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
    */
   public function load(ObjectManager $em) {
     

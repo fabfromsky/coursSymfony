@@ -8,7 +8,8 @@ use Ens\JobeetBundle\Entity\Job;
 use Ens\JobeetBundle\Form\JobType;
 
 /**
- * Job controller.
+ * Job controller
+ * @author fabinthesky
  *
  */
 class JobController extends Controller
@@ -16,7 +17,7 @@ class JobController extends Controller
   
   /**
    * Lists all Job entities.
-   *
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function indexAction() {
     $em = $this->getDoctrine()->getManager();
@@ -32,7 +33,8 @@ class JobController extends Controller
   
   /**
    * Creates a new Job entity.
-   *
+   * @param Request $request
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
    */
   public function createAction(Request $request) {
     $entity = new Job();
@@ -62,10 +64,8 @@ class JobController extends Controller
   
   /**
    * Creates a form to create a Job entity.
-   *
-   * @param Job $entity The entity
-   *
-   * @return \Symfony\Component\Form\Form The form
+   * @param Job $entity
+   * @return \Symfony\Component\Form\Form
    */
   private function createCreateForm(Job $entity) {
     $form = $this->createForm(new JobType(), $entity, array(
@@ -78,10 +78,10 @@ class JobController extends Controller
     return $form;
   }
   
-  /**
-   * Displays a form to create a new Job entity.
-   *
-   */
+ 	/**
+ 	 * Displays a form to create a new Job entity.
+ 	 * @return \Symfony\Component\HttpFoundation\Response
+ 	 */
   public function newAction() {
     $entity = new Job();
     $entity->setType('full-time');
@@ -95,7 +95,8 @@ class JobController extends Controller
   
   /**
    * Finds and displays a Job entity.
-   *
+   * @param unknown $id
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function showAction($id) {
     $em = $this->getDoctrine()->getManager();
@@ -115,7 +116,8 @@ class JobController extends Controller
   
   /**
    * Displays a form to edit an existing Job entity.
-   *
+   * @param unknown $token
+   * @return \Symfony\Component\HttpFoundation\Response
    */
   public function editAction($token) {
     $em = $this->getDoctrine()->getManager();
@@ -137,10 +139,8 @@ class JobController extends Controller
   
   /**
    * Creates a form to edit a Job entity.
-   *
-   * @param Job $entity The entity
-   *
-   * @return \Symfony\Component\Form\Form The form
+   * @param Job $entity
+   * @return \Symfony\Component\Form\Form
    */
   private function createEditForm(Job $entity) {
     $form = $this->createForm(new JobType(), $entity, array(
@@ -154,9 +154,9 @@ class JobController extends Controller
   
   /**
    * Deletes a job enitty
-   * @param type Request $request 
-   * @param type $token 
-   * @return type
+   * @param Request $request
+   * @param unknown $token
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
    */
   public function updateAction(Request $request, $token) {
     $em = $this->getDoctrine()->getManager();
@@ -190,10 +190,10 @@ class JobController extends Controller
   }
   
   /**
-   * Delete a job
-   * @param type Request $request 
-   * @param type $token 
-   * @return type
+   * Deletes a job
+   * @param Request $request
+   * @param unknown $token
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse
    */
   public function deleteAction(Request $request, $token) {
     $form = $this->createDeleteForm($token);
@@ -216,10 +216,8 @@ class JobController extends Controller
   
   /**
    * Creates a form to delete a Job entity by id.
-   *
-   * @param mixed $id The entity id
-   *
-   * @return \Symfony\Component\Form\Form The form
+   * @param unknown $token
+   * @return \Symfony\Component\Form\Form
    */
   private function createDeleteForm($token) {
     return $this->createFormBuilder(array('token' => $token))
@@ -246,6 +244,11 @@ class JobController extends Controller
     ));
   }
 
+  /**
+   * Publishes new job
+   * @param unknown $token
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse
+   */
   public function publishAction($token) {
     $form = $this->createPublishForm($token);
     $request = $this->getRequest();
@@ -275,6 +278,11 @@ class JobController extends Controller
     )));
   }
  
+  /**
+   * Creates a form to publish job
+   * @param unknown $token
+   * @return \Symfony\Component\Form\Form
+   */
   private function createPublishForm($token) {
     return $this->createFormBuilder(array('token' => $token))
       ->add('token', 'hidden')

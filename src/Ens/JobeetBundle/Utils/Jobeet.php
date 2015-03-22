@@ -4,11 +4,11 @@ namespace Ens\JobeetBundle\Utils;
 class Jobeet
 {
   
-  /**
-   * slugify url
-   *
-   * @return
-   */
+/**
+ * slugify method
+ * @param unknown $text
+ * @return string|mixed
+ */
   static public function slugify($text) {
     
     //replace all special chars by -
