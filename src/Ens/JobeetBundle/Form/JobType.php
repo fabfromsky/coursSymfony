@@ -31,7 +31,7 @@ class JobType extends AbstractType
             ->add('created_at')
             ->add('updated_at')
             ->add('category')
-            ->add('file', 'file', array('label' =>'company logo', 'required' => false))
+            ->add('file', 'file', array('label' =>'company logo', 'required' => false));
         ;
     }
     
