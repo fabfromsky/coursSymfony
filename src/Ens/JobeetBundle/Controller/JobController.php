@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ens\JobeetBundle\Entity\Job;
 use Ens\JobeetBundle\Form\JobType;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 /**
  * Job controller
  * 
@@ -16,10 +18,12 @@ use Ens\JobeetBundle\Form\JobType;
 class JobController extends Controller {
 	
 	/**
-	 * Lists all Job entities.
-	 * 
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 */
+	*@ApiDoc(
+	*	resource=true,
+	*	description="Lists all job entities"
+	*)
+	*
+	*/
 	public function indexAction() {
 		$em = $this->getDoctrine ()->getManager ();
 		
@@ -36,10 +40,14 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Creates a new Job entity.
-	 * 
-	 * @param Request $request        	
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 * @ApiDoc( 
+	 * 	resource=true,
+	 * 	description="Creates a new Job entity.",
+	 * 	parameters={
+   *      {"name"="request", "dataType"="Request", "required"=true, "description"="request"}
+   *  }
+	 * )
+	 *
 	 */
 	public function createAction(Request $request) {
 		$entity = new Job ();
@@ -69,10 +77,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Creates a form to create a Job entity.
-	 * 
-	 * @param Job $entity        	
-	 * @return \Symfony\Component\Form\Form
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Creates a form to create a Job entity."
+	 * )
+	 *
 	 */
 	private function createCreateForm(Job $entity) {
 		$form = $this->createForm ( new JobType(), $entity, array (
@@ -88,9 +97,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Displays a form to create a new Job entity.
-	 * 
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Displays a form to create a new Job entity."
+	 * )
+	 *
 	 */
 	public function newAction() {
 		$entity = new Job ();
@@ -104,10 +115,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Finds and displays a Job entity.
-	 * 
-	 * @param unknown $id        	
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Finds and displays a Job entity."
+	 * )
+	 *
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -148,10 +160,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Displays a form to edit an existing Job entity.
-	 * 
-	 * @param unknown $token        	
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Displays a form to edit an existing Job entity."
+	 * )
+	 *
 	 */
 	public function editAction($token) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -173,10 +186,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Creates a form to edit a Job entity.
-	 * 
-	 * @param Job $entity        	
-	 * @return \Symfony\Component\Form\Form
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Creates a form to edit a Job entity."
+	 * )
+	 *
 	 */
 	private function createEditForm(Job $entity) {
 		$form = $this->createForm ( new JobType (), $entity, array (
@@ -194,11 +208,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Deletes a job enitty
-	 * 
-	 * @param Request $request        	
-	 * @param unknown $token        	
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Updates a Job entity."
+	 * )
+	 *
 	 */
 	public function updateAction(Request $request, $token) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -233,11 +247,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Deletes a job
-	 * 
-	 * @param Request $request        	
-	 * @param unknown $token        	
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description="Deletes a job entity."
+	 * )
+	 *
 	 */
 	public function deleteAction(Request $request, $token) {
 		$form = $this->createDeleteForm ( $token );
@@ -259,10 +273,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Creates a form to delete a Job entity by id.
-	 * 
-	 * @param unknown $token        	
-	 * @return \Symfony\Component\Form\Form
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description=" Creates a form to delete a Job entity by id."
+	 * )
+	 *
 	 */
 	private function createDeleteForm($token) {
 		return $this->createFormBuilder ( array (
@@ -289,10 +304,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Publishes new job
-	 * 
-	 * @param unknown $token        	
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description=" Publishes a new job."
+	 * )
+	 *
 	 */
 	public function publishAction($token) {
 		$form = $this->createPublishForm ( $token );
@@ -324,10 +340,11 @@ class JobController extends Controller {
 	}
 	
 	/**
-	 * Creates a form to publish job
-	 * 
-	 * @param unknown $token        	
-	 * @return \Symfony\Component\Form\Form
+	 * @ApiDoc(
+	 * 	resource=true,
+	 * 	description=" Creates a form to publish a job."
+	 * )
+	 *
 	 */
 	private function createPublishForm($token) {
 		return $this->createFormBuilder ( array (

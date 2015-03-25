@@ -4,6 +4,7 @@ namespace Ens\JobeetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ens\JobeetBundle\Entity\Category;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Controller category
@@ -12,13 +13,14 @@ use Ens\JobeetBundle\Entity\Category;
  *        
  */
 class CategoryController extends Controller {
+	
 	/**
-	 * Shows category job
-	 * 
-	 * @param unknown $slug        	
-	 * @param unknown $page        	
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 */
+	*@ApiDoc(
+	*	resource=true,
+	*	description="show jobs by category"
+	*)
+	*
+	*/
 	public function showAction($slug, $page) {
 		$em = $this->getDoctrine ()->getManager ();
 		

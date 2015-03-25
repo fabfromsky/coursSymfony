@@ -11,9 +11,12 @@ use Ens\JobeetBundle\Entity\User;
 
 class JobeetUsersCommand extends ContainerAwareCommand {
 	/**
-	 * (non-PHPdoc)
-	 * @see \Symfony\Component\Console\Command\Command::configure()
-	 */
+	*@ApiDoc(
+	*	resource=true,
+	*	description="Configure add of new users"
+	*)
+	*
+	*/
 	protected function configure() {
 		$this->setName('ens:jobeet:users')
 			->setDescription('Add Jobeet users')
@@ -21,6 +24,13 @@ class JobeetUsersCommand extends ContainerAwareCommand {
 			->addArgument('password', InputArgument::REQUIRED, 'The password');
 	}
 	
+	/**
+	*@ApiDoc(
+	*	resource=true,
+	*	description="Adds new user"
+	*)
+	*
+	*/
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$username = $input->getArgument('username');
 		$password = $input->getArgument('password');

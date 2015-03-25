@@ -5,6 +5,8 @@ namespace Ens\JobeetBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 class DefaultController extends Controller {
 	/**
 	 *
@@ -18,10 +20,12 @@ class DefaultController extends Controller {
 	}
 	
 	/**
-	 * shows connection form
-	 * 
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 */
+	*@ApiDoc(
+	*	resource=true,
+	*	description="displays connexion form"
+	*)
+	*
+	*/
 	public function loginAction() {
 		$request = $this->getRequest ();
 		$session = $request->getSession ();

@@ -7,12 +7,14 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery as ProxyQueryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class JobAdminController extends Controller {
+
 	/**
-	 *
-	 * @param ProxyQueryInterface $selectedModelQuery        	
-	 * @throws AccessDeniedException
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
-	 */
+	*@ApiDoc(
+	*	resource=true,
+	*	description="Extends job validity"
+	*)
+	*
+	*/
 	public function batchActionExtend(ProxyQueryInterface $selectedModelQuery) {
 		if ($this->admin->isGranted ( 'EDIT' ) === false || $this->admin->isGranted ( 'DELETE' ) === false) {
 			throw new AccessDeniedException ();
