@@ -43,13 +43,13 @@ class JobControllerTest extends WebTestCase {
 		$this->assertTrue ( $crawler->filter ( '.jobs td.position:contains("Expired")' )->count () == 0 );
 		
 		// only $max_jobs_on_homepage jobs are listed for a category
-		$this->assertTrue ( $crawler->filter ( '.category_programming tr' )->count () <= 10 );
+		$this->assertTrue ( $crawler->filter ( '.category_time-lord tr' )->count () <= 10 );
 		$this->assertTrue ( $crawler->filter ( '.category_design .more_jobs' )->count () == 0 );
 		$this->assertTrue ( $crawler->filter ( '.category_programming .more_jobs' )->count () == 0 );
-		$this->assertTrue ( $crawler->filter ( '.category_timelord .more_jobs' )->count () == 0 );
+		$this->assertTrue ( $crawler->filter ( '.category_time-lord .more_jobs' )->count () == 1 );
 		
 		// jobs are sorted by date
-		// $this->assertTrue ( $crawler->filter ( '.category_timelord tr' )->first ()->filter ( sprintf ( 'a[href*="/%d/"]', $this->getMostRecentProgrammingJob ()->getId () ) )->count () == 1 );
+		$this->assertTrue($crawler->filter('.category_programming tr')->first()->filter(sprintf('a[href*="/%d/"]', $this->getMostRecentProgrammingJob()->getId()))->count() == 1);
 		
 		// each job on the homepage is clickable and give detailed information
 		$job = $this->getMostRecentProgrammingJob ();
@@ -75,7 +75,16 @@ class JobControllerTest extends WebTestCase {
 		$crawler = $client->request ( 'GET', '/job/new' );
 		$this->assertEquals ( 'Ens\JobeetBundle\Controller\JobController::newAction', $client->getRequest ()->attributes->get ( '_controller' ) );
 		
-		$form = $crawler->selectButton ( 'Preview your job' )->form ( array ('job[company]' => 'Sensio Labs','job[url]' => 'http://www.sensio.com/','job[file]' => __DIR__ . '/../../../../../web/bundles/ensjobeet/images/sensio-labs.gif','job[position]' => 'Developer','job[location]' => 'Atlanta, USA','job[description]' => 'You will work with symfony to develop websites for our customers.','job[how_to_apply]' => 'Send me an email','job[email]' => 'for.a.job@example.com','job[is_public]' => false ) );
+		$form = $crawler->selectButton ( 'Preview your job' )->form ( array ('job[company]' 
+				=> 'Sensio Labs','job[url]' 
+				=> 'http://www.sensio.com/','job[file]' 
+				=> __DIR__ . '/../../../../../web/bundles/ensjobeet/images/sensio-labs.gif','job[position]' 
+				=> 'Developer','job[location]' 
+				=> 'Atlanta, USA','job[description]' 
+				=> 'You will work with symfony to develop websites for our customers.','job[how_to_apply]' 
+				=> 'Send me an email','job[email]' 
+				=> 'for.a.job@example.com','job[is_public]'
+				=> false ) );
 		
 		$client->submit ( $form );
 		$this->assertEquals ( 'Ens\JobeetBundle\Controller\JobController::createAction', $client->getRequest ()->attributes->get ( '_controller' ) );

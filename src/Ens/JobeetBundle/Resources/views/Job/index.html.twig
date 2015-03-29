@@ -9,23 +9,24 @@
   <div id="jobs">
     {% for category in categories %}
 
-      <div class="category">
+      <div class="category category_{{ category.slug }}">
         <div class="feed">
           <a href="">Feed</a>
         </div>
         <h1><a href="{{ path('ens_jobeet_category', {'slug': category.slug }) }}">{{ category.name }}</a></h1>
+      	{{ include ('EnsJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
+
+	      {% if category.morejobs %}
+	        <div class="more_jobs">
+	            and 
+	            <a href="{{ path('ens_jobeet_category', { 'slug': category.slug }) }}">
+	              {{ category.morejobs }}
+	            </a>
+	        </div>
+	      {% endif %}
       </div>
 
-      {{ include ('EnsJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
-
-      {% if category.morejobs %}
-        <div class="more_jobs">
-            and 
-            <a href="{{ path('ens_jobeet_category', { 'slug': category.slug }) }}">
-              {{ category.morejobs }}
-            </a>
-        </div>
-      {% endif %}
+      
 
     {% endfor %}
   </div>
