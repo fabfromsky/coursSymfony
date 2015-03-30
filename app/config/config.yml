@@ -99,7 +99,6 @@ bazinga_faker:
         Ens\JobeetBundle\Entity\Job: 
             number: 10
             custom_formatters:
-                category: { method: randomElement, parameters: [ [ 11, 12, 13, 14, 15 ] ] }
                 type: { method: randomElement, parameters: [ [ 'full-time', 'part-time', 'freelance' ] ] }
                 company: { method: word }
                 logo: { method: imageUrl, parameters: [ 640, 480 ] }

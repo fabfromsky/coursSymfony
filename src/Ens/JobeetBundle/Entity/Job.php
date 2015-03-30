@@ -111,6 +111,7 @@ class Job {
 	 * @var \Ens\JobeetBundle\Entity\Category
 	 */
 	private $category;
+	
 	public $file;
 	
 	/**
