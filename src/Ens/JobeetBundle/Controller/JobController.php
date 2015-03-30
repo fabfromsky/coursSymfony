@@ -4,6 +4,7 @@ namespace Ens\JobeetBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Ens\JobeetBundle\Entity\Job;
 use Ens\JobeetBundle\Form\JobType;
 
@@ -49,10 +50,11 @@ class JobController extends Controller {
 	 * )
 	 *
 	 */
-	public function createAction(Request $request) {
+	public function createAction() {
+		
 		$entity = new Job ();
 		$request = $this->getRequest ();
-		$form = $this->createCreateForm ( new JobType (), $entity );
+		$form = $this->createForm ( new JobType(), $entity );
 		$form->bind ( $request );
 		
 		if ($form->isValid ()) {
@@ -61,7 +63,7 @@ class JobController extends Controller {
 			$em->persist ( $entity );
 			$em->flush ();
 			
-			return $this->redirect ( $this->generateUrl ( 'ens_job_show', array (
+			return $this->redirect ( $this->generateUrl ( 'ens_job_preview', array (
 					'company' => $entity->getCompanySlug (),
 					'location' => $entity->getLocationSlug (),
 					'token' => $entity->getToken (),
@@ -83,18 +85,18 @@ class JobController extends Controller {
 	 * )
 	 *
 	 */
-	private function createCreateForm(Job $entity) {
-		$form = $this->createForm ( new JobType(), $entity, array (
-				'action' => $this->generateUrl ( 'ens_job_create' ),
-				'method' => 'POST' 
-		) );
+// 	private function createCreateForm(Job $entity) {
+// 		$form = $this->createForm ( new JobType(), $entity, array (
+// 				'action' => $this->generateUrl ( 'ens_job_create' ),
+// 				'method' => 'POST' 
+// 		) );
 		
-		$form->add ( 'submit', 'submit', array (
-				'label' => 'Create' 
-		) );
+// 		$form->add ( 'submit', 'submit', array (
+// 				'label' => 'Create' 
+// 		) );
 		
-		return $form;
-	}
+// 		return $form;
+// 	}
 	
 	/**
 	 * @ApiDoc(
@@ -106,7 +108,7 @@ class JobController extends Controller {
 	public function newAction() {
 		$entity = new Job ();
 		$entity->setType ( 'full-time' );
-		$form = $this->createCreateForm ( new Job (), $entity );
+		$form = $this->createForm ( new Job (), $entity );
 		
 		return $this->render ( 'EnsJobeetBundle:Job:new.html.twig', array (
 				'entity' => $entity,
@@ -314,7 +316,7 @@ class JobController extends Controller {
 		$form = $this->createPublishForm ( $token );
 		$request = $this->getRequest ();
 		
-		$form->bindRequest ( $request );
+		$form->bind ( $request );
 		
 		if ($form->isValid ()) {
 			$em = $this->getDoctrine ()->getManager ();

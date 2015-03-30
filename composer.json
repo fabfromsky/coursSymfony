@@ -27,7 +27,8 @@
         "sonata-project/jquery-bundle": "1.10.*@dev",
         "sonata-project/easy-extends-bundle": "2.1.*@dev",
         "sonata-project/core-bundle": "~2.3",
-        "nelmio/api-doc-bundle": "~2.8"
+        "nelmio/api-doc-bundle": "~2.8",
+        "willdurand/faker-bundle": "~1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

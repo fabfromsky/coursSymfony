@@ -91,3 +91,23 @@ sonata_block:
         sonata.block.service.rss:
 
 nelmio_api_doc: ~
+
+#bazinga faker
+bazinga_faker:
+    orm: doctrine
+    entities: 
+        Ens\JobeetBundle\Entity\Job: 
+            number: 10
+            custom_formatters:
+                category: { method: randomElement, parameters: [ [ 11, 12, 13, 14, 15 ] ] }
+                type: { method: randomElement, parameters: [ [ 'full-time', 'part-time', 'freelance' ] ] }
+                company: { method: word }
+                logo: { method: imageUrl, parameters: [ 640, 480 ] }
+                url: { method: url }
+                position: { method: word }
+                location: { method: city }
+                description: { method: sentence, parameters [ 6 ] }
+                how_to_apply:  { method: sentence, parameters [ 6 ] }
+                token: { method: word }
+                is_public: { method: boolean }
+                is_activated: { method: boolean }
