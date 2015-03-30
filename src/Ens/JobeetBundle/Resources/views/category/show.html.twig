@@ -13,12 +13,13 @@
 
   <div class="category">
     <div class="feed">
-      <a href="">Feed</a>
-    </div>
+		    <a href="{{ path('ens_jobeet_category', { 'slug': category.slug, '_format': 'atom' }) }}">Feed</a>
+		</div>
+		
     <h1>{{ category.name }}</h1>
+  {{ include ('EnsJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs})}}
   </div>
 
-  {{ include ('EnsJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs})}}
 
   {% if last_page > 1 %}
     <div class="pagination">

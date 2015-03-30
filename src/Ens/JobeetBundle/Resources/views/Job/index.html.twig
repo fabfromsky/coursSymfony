@@ -11,8 +11,9 @@
 
       <div class="category category_{{ category.slug }}">
         <div class="feed">
-          <a href="">Feed</a>
-        </div>
+				    <a href="{{ path('ens_jobeet_category', { 'slug': category.slug, '_format': 'atom' }) }}">Feed</a>
+				</div>
+				
         <h1><a href="{{ path('ens_jobeet_category', {'slug': category.slug }) }}">{{ category.name }}</a></h1>
       	{{ include ('EnsJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
 
