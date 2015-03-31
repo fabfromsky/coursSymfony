@@ -66,7 +66,7 @@ class JobController extends Controller {
 		
 		$entity = new Job ();
 		$form = $this->createForm ( new JobType(), $entity );
-		$form->submit($request);
+		$form->bind($request);
 		
 		if ($form->isValid ()) {
 			$em = $this->getDoctrine ()->getManager ();
@@ -87,6 +87,23 @@ class JobController extends Controller {
 				'entity' => $entity,
 				'form' => $form->createView () 
 		) );
+	}
+	
+	/**
+	 * Creates a form to create a Job entity.
+	 *
+	 * @param Job $entity The entity
+	 *
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createCreateForm(Job $entity)
+	{
+		$form = $this->createForm(new JobType(), $entity, array(
+				'action' => $this->generateUrl('ibw_job_create'),
+				'method' => 'POST',
+		));
+		$form->add('submit', 'submit', array('label' => 'Create'));
+		return $form;
 	}
 
 	
@@ -304,9 +321,8 @@ class JobController extends Controller {
 	 * )
 	 *
 	 */
-	public function publishAction($token) {
+	public function publishAction(Request $request, $token) {
 		$form = $this->createPublishForm ( $token );
-		$request = $this->getRequest ();
 		
 		$form->bind ( $request );
 		
@@ -322,7 +338,7 @@ class JobController extends Controller {
 			$em->persist ( $entity );
 			$em->flush ();
 			
-			$this->get ( 'session' )->setFlash ( 'notice', 'Your job is now online for 30 days.' );
+			$this->get ( 'session' )->getFlashBag ( 'notice', 'Your job is now online for 30 days.' );
 		}
 		
 		return $this->redirect ( $this->generateUrl ( 'ens_job_preview', array (
