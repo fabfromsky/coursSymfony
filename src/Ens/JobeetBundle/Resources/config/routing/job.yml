@@ -10,7 +10,7 @@ ens_job_show:
 
 ens_job_preview:
     path:      /{company}/{location}/{token}/{position}
-    defaults:   { _controller: "EnsJobeetBundle:Job:new" }
+    defaults:   { _controller: "EnsJobeetBundle:Job:preview" }
     requirements:
         token:   \w+
 
