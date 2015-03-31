@@ -62,17 +62,16 @@ class JobController extends Controller {
 	 * )
 	 *
 	 */
-	public function createAction() {
+	public function createAction(Request $request) {
 		
 		$entity = new Job ();
-		$request = $this->getRequest ();
 		$form = $this->createForm ( new JobType(), $entity );
-		$form->bind ( $request );
+		$form->submit($request);
 		
 		if ($form->isValid ()) {
 			$em = $this->getDoctrine ()->getManager ();
 			
-			$em->persist ( $entity );
+			$em->persist($entity);
 			$em->flush ();
 			
 			return $this->redirect ( $this->generateUrl ( 'ens_job_preview', array (
@@ -89,26 +88,7 @@ class JobController extends Controller {
 				'form' => $form->createView () 
 		) );
 	}
-	
-	/**
-	 * @ApiDoc(
-	 * 	resource=true,
-	 * 	description="Creates a form to create a Job entity."
-	 * )
-	 *
-	 */
-// 	private function createCreateForm(Job $entity) {
-// 		$form = $this->createForm ( new JobType(), $entity, array (
-// 				'action' => $this->generateUrl ( 'ens_job_create' ),
-// 				'method' => 'POST' 
-// 		) );
-		
-// 		$form->add ( 'submit', 'submit', array (
-// 				'label' => 'Create' 
-// 		) );
-		
-// 		return $form;
-// 	}
+
 	
 	/**
 	 * @ApiDoc(

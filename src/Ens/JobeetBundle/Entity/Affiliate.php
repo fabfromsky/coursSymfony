@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * affiliate class
- * 
+ *
  * @author fabinthesky
  *        
  */
@@ -181,5 +181,58 @@ class Affiliate {
 	 */
 	public function setCreatedAtValue() {
 		$this->created_at = new \DateTime ();
+	}
+	/**
+	 *
+	 * @var boolean
+	 */
+	private $isActive;
+	
+	/**
+	 * Set isActive
+	 *
+	 * @param boolean $isActive        	
+	 * @return Affiliate
+	 */
+	public function setIsActive($isActive) {
+		$this->isActive = $isActive;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get isActive
+	 *
+	 * @return boolean
+	 */
+	public function getIsActive() {
+		return $this->isActive;
+	}
+	/**
+	 * @ORM\PrePersist
+	 */
+	public function setTokenValue() {
+		if (! $this->getToken ()) {
+			$token = sha1 ( $this->getEmail () . rand ( 11111, 99999 ) );
+			$this->token = $token;
+		}
+		
+		return $this;
+	}
+	public function addCategory() {
+	}
+	public function activate() {
+		if (! $this->getIsActive ()) {
+			$this->setIsActive ( true );
+		}
+		
+		return $this->isActive;
+	}
+	public function deactivate() {
+		if ($this->getIsActive ()) {
+			$this->setIsActive ( false );
+		}
+		
+		return $this->isActive;
 	}
 }

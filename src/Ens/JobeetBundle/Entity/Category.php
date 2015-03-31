@@ -32,7 +32,7 @@ class Category {
 	 *
 	 * @var \Doctrine\Common\Collections\Collection
 	 */
-	private $category_affiliates;
+	private $affiliates;
 	
 	/**
 	 *
@@ -45,7 +45,7 @@ class Category {
 	 */
 	public function __construct() {
 		$this->jobs = new \Doctrine\Common\Collections\ArrayCollection ();
-		$this->category_affiliates = new \Doctrine\Common\Collections\ArrayCollection ();
+		$this->affiliates = new \Doctrine\Common\Collections\ArrayCollection ();
 	}
 	
 	/**
@@ -114,8 +114,8 @@ class Category {
 	 * @param \Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates        	
 	 * @return Category
 	 */
-	public function addCategoryAffiliate(\Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates) {
-		$this->category_affiliates [] = $categoryAffiliates;
+	public function addCategory(\Ens\JobeetBundle\Entity\Affiliate $affiliates) {
+		$this->affiliates [] = $affiliates;
 		
 		return $this;
 	}
@@ -125,8 +125,8 @@ class Category {
 	 *
 	 * @param \Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates        	
 	 */
-	public function removeCategoryAffiliate(\Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates) {
-		$this->category_affiliates->removeElement ( $categoryAffiliates );
+	public function removeCategoryAffiliate(\Ens\JobeetBundle\Entity\Affiliate $affiliates) {
+		$this->affiliates->removeElement ( $affiliates );
 	}
 	
 	/**
@@ -134,8 +134,8 @@ class Category {
 	 *
 	 * @return \Doctrine\Common\Collections\Collection
 	 */
-	public function getCategoryAffiliates() {
-		return $this->category_affiliates;
+	public function getCategory() {
+		return $this->affiliates;
 	}
 	
 	/**
@@ -217,4 +217,32 @@ class Category {
 	public function setSlugValue() {
 		$this->slug = Jobeet::slugify ( $this->getName () );
 	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $category_affiliates;
+
+
+    /**
+     * Add category_affiliates
+     *
+     * @param \Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates
+     * @return Category
+     */
+    public function addCategoryAffiliate(\Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates)
+    {
+        $this->category_affiliates[] = $categoryAffiliates;
+
+        return $this;
+    }
+
+    /**
+     * Get category_affiliates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategoryAffiliates()
+    {
+        return $this->category_affiliates;
+    }
 }

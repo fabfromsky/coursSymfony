@@ -82,7 +82,7 @@ sonata_admin:
     title: Jobeet Admin
 
 sonata_block:
-    default_context: [cms]
+    default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
             contexts: [admin]
@@ -93,20 +93,3 @@ sonata_block:
 nelmio_api_doc: ~
 
 #bazinga faker
-bazinga_faker:
-    orm: doctrine
-    entities: 
-        Ens\JobeetBundle\Entity\Job: 
-            number: 10
-            custom_formatters:
-                type: { method: randomElement, parameters: [ [ 'full-time', 'part-time', 'freelance' ] ] }
-                company: { method: word }
-                logo: { method: imageUrl, parameters: [ 640, 480 ] }
-                url: { method: url }
-                position: { method: word }
-                location: { method: city }
-                description: { method: sentence, parameters [ 6 ] }
-                how_to_apply:  { method: sentence, parameters [ 6 ] }
-                token: { method: word }
-                is_public: { method: boolean }
-                is_activated: { method: boolean }

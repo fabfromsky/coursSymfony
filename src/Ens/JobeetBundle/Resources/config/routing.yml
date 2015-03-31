@@ -19,4 +19,13 @@ ens_jobeet_category:
 
 logout:
     pattern: /logout
- 
+    
+ens_jobeet_api:
+    pattern: /api/{token}/jobs.{_format}
+    defaults: {_controller: "EnsJobeetBundle:Api:list"}
+    requirements:
+      _format: xml|json|yaml
+      
+EnsobeetBundle_ibw_affiliate:
+    resource: "@EnsJobeetBundle/Resources/config/routing/affiliate.yml"
+    prefix:   /affiliate

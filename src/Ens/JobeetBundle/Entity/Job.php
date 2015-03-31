@@ -535,7 +535,7 @@ class Job {
 	 * @return type
 	 */
 	public static function getTypesValues() {
-		return array_keys ( self::getTypes () );
+		return array_keys ( self::getTypes() );
 	}
 	
 	/**
@@ -615,5 +615,20 @@ class Job {
 	}
 	public function publish() {
 		$this->setIsActivated ( true );
+	}
+	
+	public function asArray() {
+		return array(
+				'category'     => $this->getCategory()->getName(),
+				'type'         => $this->getType(),
+				'company'      => $this->getCompany(),
+				'logo'         => $this->getLogo() ? 'http://' . $host . '/uploads/jobs/' . $this->getLogo() : null,
+				'url'          => $this->getUrl(),
+				'position'     => $this->getPosition(),
+				'location'     => $this->getLocation(),
+				'description'  => $this->getDescription(),
+				'how_to_apply' => $this->getHowToApply(),
+				'expires_at'   => $this->getCreatedAt()->format('Y-m-d H:i:s'),
+		);
 	}
 }
