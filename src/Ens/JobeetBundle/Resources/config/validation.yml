@@ -5,7 +5,7 @@ Ens\JobeetBundle\Entity\Job:
       - Email: ~
     type:
       - NotBlank: ~
-      - Choice: { callback: getTypeValues }
+      - Choice: { callback: getTypesValues }
     company:
       - NotBlank: ~
     position:
